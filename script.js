@@ -39,13 +39,11 @@ function updateNumbers() {
             if (operator === '' && second === '') {
                 first += e.target.innerHTML;
                 display.innerHTML = first;
-                first = parseInt(first);
             } else if (operator === '/' && e.target.innerHTML === '0') {
                 window.alert("Whoa whoa whoa you can't do that!\n\nEnter a number greater than zero:")
             } else if (first != '' && operator != '') {
                 second += e.target.innerHTML;
                 display.innerHTML = second;
-                second = parseInt(second);
             }
         });
     });
@@ -60,6 +58,8 @@ function updateOperator() {
                 operator = e.target.innerHTML;
                 display.innerHTML = operator;
             } else if (first != '' && second != '') {
+                first = parseFloat(first);
+                second = parseFloat(second);
                 let current = operate(operator, first, second);
                 display.innerHTML = current.toFixed(2);
                 first = current; 
@@ -74,6 +74,8 @@ updateOperator();
 const equals = document.getElementById("equals");
 function result() {
     equals.addEventListener("click", () => {
+        first = parseFloat(first);
+        second = parseFloat(second);
         display.innerHTML = operate(operator, first, second).toFixed(2);
         first = '';
         second = '';
@@ -109,3 +111,24 @@ function backspace() {
     });
 }
 backspace();
+
+const decimal = document.querySelector('#decimal');
+function decimalPoint() {
+    if (
+        operator === '' && 
+        second === '' &&
+        !first.includes('.')
+    ) {
+        first += '.';
+        display.innerHTML = first;
+    } else if (
+        first != '' && 
+        operator != '' &&
+        !second.includes('.')
+    ) {
+        second += '.';
+        display.innerHTML = second;
+    }
+}
+
+decimal.addEventListener("click", () => decimalPoint());
