@@ -39,9 +39,35 @@ function updateFirst() {
             if (first === '' && second === '') {
                 first = e.target.innerHTML;
                 display.innerHTML = first;
+                first = parseInt(first);
             }
         });
     });
 }
-
 updateFirst();
+
+let operators = document.querySelectorAll('.operator');
+function updateOperator() {
+    operators.forEach((item) => {
+        item.addEventListener("click", (e) => {
+            if (first != '' && second === '') {
+                operator = e.target.innerHTML;
+                display.innerHTML = operator;
+            }
+        });
+    });
+}
+updateOperator();
+
+function updateSecond() {
+    numbers.forEach((num) => {
+        num.addEventListener("click", (e) => {
+            if (operator != '' && second === '') {
+                second = e.target.innerHTML;
+                display.innerHTML = second;
+                second = parseInt(second);
+            }
+        });
+    });
+}
+updateSecond();
