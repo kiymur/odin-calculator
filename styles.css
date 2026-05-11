@@ -60,7 +60,7 @@ button {
     align-items: center;
 }
 
-.number {
+.number, .extra {
     width: 100px;
     height: 100px;
     background-color: rgba(82, 94, 93, 0.6);
