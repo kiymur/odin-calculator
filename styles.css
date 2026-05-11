@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+}
+
+div {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    height: 690px;
+    background-color: black;
+}
+
+.result {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 300px;
+    height: 125px;
+}
+
+.operators {
+    display: flex;
+}
+
+.operator {
+    width: 77px;
+    height: 77px;
+    background-color: rgb(126 157 224 / 0.6);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.numbers {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.number {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(82, 94, 93, 0.6);
+}
+
+.end {
+    width: 155px;
+    height: 80px;
+    background-color: rgb(126 157 224 / 0.6);
+}
