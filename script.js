@@ -23,15 +23,15 @@ function operate(operator, first, second) {
         return add(first, second);
     } else if (operator === '-') {
         return subtract(first, second);
-    } else if (operator === "*") {
+    } else if (operator === '*') {
         return multiply(first, second);
-    } else if (operator === "/") {
+    } else if (operator === '/') {
         return divide(first, second);
     };
 }
 
-let display = document.querySelector('.display');
-let numbers = document.querySelectorAll('.number');
+const display = document.querySelector('.display');
+const numbers = document.querySelectorAll('.number');
 
 function updateFirst() {
     numbers.forEach((num) => {
@@ -46,7 +46,7 @@ function updateFirst() {
 }
 updateFirst();
 
-let operators = document.querySelectorAll('.operator');
+const operators = document.querySelectorAll('.operator');
 function updateOperator() {
     operators.forEach((item) => {
         item.addEventListener("click", (e) => {
@@ -71,3 +71,11 @@ function updateSecond() {
     });
 }
 updateSecond();
+
+const equals = document.getElementById("equals");
+function result() {
+    equals.addEventListener("click", () => {
+        display.innerHTML = operate(operator, first, second);
+    });
+}
+result();
