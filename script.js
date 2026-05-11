@@ -76,3 +76,14 @@ function result() {
     });
 }
 result();
+
+const clear = document.getElementById("clear");
+function clearAll() {
+    clear.addEventListener("click", () => {
+        first = '';
+        operator = '';
+        second = '';
+        display.innerHTML = '';
+    });
+}
+clearAll();
