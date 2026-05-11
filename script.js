@@ -40,6 +40,8 @@ function updateNumbers() {
                 first += e.target.innerHTML;
                 display.innerHTML = first;
                 first = parseInt(first);
+            } else if (operator === '/' && e.target.innerHTML === '0') {
+                window.alert("Whoa whoa whoa you can't do that!\n\nEnter a number greater than zero:")
             } else if (first != '' && operator != '') {
                 second += e.target.innerHTML;
                 display.innerHTML = second;
