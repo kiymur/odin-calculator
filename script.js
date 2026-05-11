@@ -59,7 +59,7 @@ function updateOperator() {
                 display.innerHTML = operator;
             } else if (first != '' && second != '') {
                 let current = operate(operator, first, second);
-                display.innerHTML = current;
+                display.innerHTML = current.toFixed(4);
                 first = current; 
                 operator = e.target.innerHTML;
                 second = '';
@@ -72,7 +72,7 @@ updateOperator();
 const equals = document.getElementById("equals");
 function result() {
     equals.addEventListener("click", () => {
-        display.innerHTML = operate(operator, first, second);
+        display.innerHTML = operate(operator, first, second).toFixed(4);
     });
 }
 result();
