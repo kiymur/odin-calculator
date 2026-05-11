@@ -36,12 +36,12 @@ const numbers = document.querySelectorAll('.number');
 function updateNumbers() {
     numbers.forEach((num) => {
         num.addEventListener("click", (e) => {
-            if (first === '' && second === '') {
-                first = e.target.innerHTML;
+            if (operator === '' && second === '') {
+                first += e.target.innerHTML;
                 display.innerHTML = first;
                 first = parseInt(first);
-            } else if (operator != '' && second === '') {
-                second = e.target.innerHTML;
+            } else if (first != '' && operator != '') {
+                second += e.target.innerHTML;
                 display.innerHTML = second;
                 second = parseInt(second);
             }
