@@ -1,3 +1,23 @@
+const display = document.querySelector('.display');
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+const equals = document.getElementById("equals");
+const clear = document.getElementById("clear");
+const back = document.querySelector('#back');
+const decimal = document.querySelector('#decimal');
+
+let first = '';
+let second = '';
+let operator = '';
+
+equals.addEventListener("click", () => result());
+clear.addEventListener("click", () => clearAll());
+back.addEventListener("click", () => backspace());
+decimal.addEventListener("click", () => decimalPoint());
+
+updateNumbers();
+updateOperator();
+
 function add(a, b) {
     return a + b;
 }
@@ -14,10 +34,6 @@ function divide(a, b) {
     return a / b;
 }
 
-let first = '';
-let second = '';
-let operator = '';
-
 function operate(operator, first, second) {
     if (operator === '+') {
         return add(first, second);
@@ -29,9 +45,6 @@ function operate(operator, first, second) {
         return divide(first, second);
     };
 }
-
-const display = document.querySelector('.display');
-const numbers = document.querySelectorAll('.number');
 
 function updateNumbers() {
     numbers.forEach((num) => {
@@ -48,9 +61,7 @@ function updateNumbers() {
         });
     });
 }
-updateNumbers();
 
-const operators = document.querySelectorAll('.operator');
 function updateOperator() {
     operators.forEach((item) => {
         item.addEventListener("click", (e) => {
@@ -69,50 +80,36 @@ function updateOperator() {
         });
     });
 }
-updateOperator();
 
-const equals = document.getElementById("equals");
 function result() {
-    equals.addEventListener("click", () => {
-        first = parseFloat(first);
-        second = parseFloat(second);
-        display.innerHTML = operate(operator, first, second).toFixed(2);
-        first = '';
-        second = '';
-        operator = '';
-    });
+    first = parseFloat(first);
+    second = parseFloat(second);
+    display.innerHTML = operate(operator, first, second).toFixed(2);
+    first = '';
+    second = '';
+    operator = '';
 }
-result();
 
-const clear = document.getElementById("clear");
 function clearAll() {
-    clear.addEventListener("click", () => {
-        first = '';
-        operator = '';
-        second = '';
-        display.innerHTML = '';
-    });
+    first = '';
+    operator = '';
+    second = '';
+    display.innerHTML = '';
 }
-clearAll();
 
-const back = document.querySelector('#back');
 function backspace() {
-    back.addEventListener("click", () => {
-        if (first != '' && operator === '' && second === '') {
-            first = '';
-            display.innerHTML = '';
-        } else if (first != '' && operator != '' && second === '') {
-            operator = '';
-            display.innerHTML = first;
-        } else if (first != '' && operator != '' && second != '') {
-            second = '';
-            display.innerHTML = operator;
-        }
-    });
+    if (first != '' && operator === '' && second === '') {
+        first = '';
+        display.innerHTML = '';
+    } else if (first != '' && operator != '' && second === '') {
+        operator = '';
+        display.innerHTML = first;
+    } else if (first != '' && operator != '' && second != '') {
+        second = '';
+        display.innerHTML = operator;
+    }
 }
-backspace();
 
-const decimal = document.querySelector('#decimal');
 function decimalPoint() {
     if (
         operator === '' && 
@@ -130,5 +127,3 @@ function decimalPoint() {
         display.innerHTML = second;
     }
 }
-
-decimal.addEventListener("click", () => decimalPoint());
