@@ -92,3 +92,20 @@ function clearAll() {
     });
 }
 clearAll();
+
+const back = document.querySelector('#back');
+function backspace() {
+    back.addEventListener("click", () => {
+        if (first != '' && operator === '' && second === '') {
+            first = '';
+            display.innerHTML = '';
+        } else if (first != '' && operator != '' && second === '') {
+            operator = '';
+            display.innerHTML = first;
+        } else if (first != '' && operator != '' && second != '') {
+            second = '';
+            display.innerHTML = operator;
+        }
+    });
+}
+backspace();
