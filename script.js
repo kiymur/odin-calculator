@@ -14,9 +14,9 @@ function divide(a, b) {
     return a / b;
 }
 
-let first;
-let second;
-let operator;
+let first = '';
+let second = '';
+let operator = '';
 
 function operate(operator, first, second) {
     if (operator === '+') {
@@ -36,8 +36,10 @@ let numbers = document.querySelectorAll('.number');
 function updateFirst() {
     numbers.forEach((num) => {
         num.addEventListener("click", (e) => {
-            first = e.target.innerHTML;
-            display.innerHTML = first;
+            if (first === '' && second === '') {
+                first = e.target.innerHTML;
+                display.innerHTML = first;
+            }
         });
     });
 }
