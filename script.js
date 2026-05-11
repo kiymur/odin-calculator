@@ -75,6 +75,9 @@ const equals = document.getElementById("equals");
 function result() {
     equals.addEventListener("click", () => {
         display.innerHTML = operate(operator, first, second).toFixed(2);
+        first = '';
+        second = '';
+        operator = '';
     });
 }
 result();
