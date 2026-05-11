@@ -57,6 +57,12 @@ function updateOperator() {
             if (first != '' && second === '') {
                 operator = e.target.innerHTML;
                 display.innerHTML = operator;
+            } else if (first != '' && second != '') {
+                let current = operate(operator, first, second);
+                display.innerHTML = current;
+                first = current; 
+                operator = e.target.innerHTML;
+                second = '';
             }
         });
     });
@@ -70,18 +76,3 @@ function result() {
     });
 }
 result();
-
-function keepGoing() {
-    operators.forEach((item) => {
-        item.addEventListener("click", (e) => {
-            if (first != '' && second != '') {
-                let current = operate(operator, first, second);
-                display.innerHTML = current;
-                first = current; 
-                operator = e.target.innerHTML;
-                second = '';
-            }
-        });
-    });
-}
-keepGoing();
