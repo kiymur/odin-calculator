@@ -33,18 +33,22 @@ function operate(operator, first, second) {
 const display = document.querySelector('.display');
 const numbers = document.querySelectorAll('.number');
 
-function updateFirst() {
+function updateNumbers() {
     numbers.forEach((num) => {
         num.addEventListener("click", (e) => {
             if (first === '' && second === '') {
                 first = e.target.innerHTML;
                 display.innerHTML = first;
                 first = parseInt(first);
+            } else if (operator != '' && second === '') {
+                second = e.target.innerHTML;
+                display.innerHTML = second;
+                second = parseInt(second);
             }
         });
     });
 }
-updateFirst();
+updateNumbers();
 
 const operators = document.querySelectorAll('.operator');
 function updateOperator() {
@@ -58,19 +62,6 @@ function updateOperator() {
     });
 }
 updateOperator();
-
-function updateSecond() {
-    numbers.forEach((num) => {
-        num.addEventListener("click", (e) => {
-            if (operator != '' && second === '') {
-                second = e.target.innerHTML;
-                display.innerHTML = second;
-                second = parseInt(second);
-            }
-        });
-    });
-}
-updateSecond();
 
 const equals = document.getElementById("equals");
 function result() {
