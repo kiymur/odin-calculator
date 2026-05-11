@@ -29,3 +29,17 @@ function operate(operator, first, second) {
         return divide(first, second);
     };
 }
+
+let display = document.querySelector('.display');
+let numbers = document.querySelectorAll('.number');
+
+function updateFirst() {
+    numbers.forEach((num) => {
+        num.addEventListener("click", (e) => {
+            first = e.target.innerHTML;
+            display.innerHTML = first;
+        });
+    });
+}
+
+updateFirst();

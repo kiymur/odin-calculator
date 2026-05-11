@@ -30,7 +30,7 @@ button {
     background-color: black;
 }
 
-.result {
+.display {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
