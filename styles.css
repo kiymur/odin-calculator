@@ -1,9 +1,13 @@
 body {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     font-size: 40px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(46, 64, 98);
+    height: 100vh;
 }
 
 div {
@@ -70,4 +74,14 @@ button {
     width: 155px;
     height: 80px;
     background-color: rgb(126 157 224 / 0.6);
+}
+
+.infoCon {
+    border: none;
+}
+
+.info {
+    font-size: 25px;
+    border: none;
+    color: rgba(146, 152, 151, 0.6);
 }
