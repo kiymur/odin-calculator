@@ -14,13 +14,26 @@ equals.addEventListener("click", () => result());
 clear.addEventListener("click", () => clearAll());
 back.addEventListener("click", () => backspace());
 decimal.addEventListener("click", () => decimalPoint());
+
 numbers.forEach(item => {
     item.addEventListener('click', updateNumbers)
 });
 operators.forEach(item => {
     item.addEventListener('click', updateOperator)
 });
-
+document.addEventListener('keydown', e => {
+    if (parseFloat(e.key) >= 0 && parseFloat(e.key) <= 9) {
+        handleKey(e);
+    } else if (e.key == "Backspace") {
+        backspace();
+    } else if (e.key == "Delete") {
+        clearAll();
+    } else if (e.key == "Enter") {
+        result();
+    } else if (e.key == ".") {
+        decimalPoint();
+    }
+});
 
 function add(a, b) {
     return a + b;
@@ -51,24 +64,20 @@ function operate(operator, first, second) {
 }
 
 function updateNumbers(e) {
-    let x = e.target;
-        
     if (operator === '' && second === '') {
-        first += x.innerHTML;
+        first += e.target.innerHTML;
         display.innerHTML = first;
-    } else if (operator === '/' && x.innerHTML === '0') {
+    } else if (operator === '/' && e.target.innerHTML === '0') {
         window.alert("Whoa whoa whoa you can't do that!\n\nEnter a number greater than zero:")
     } else if (first != '' && operator != '') {
-        second += x.innerHTML;
+        second += e.target.innerHTML;
         display.innerHTML = second;
     }
 }
 
 function updateOperator(e) {
-    let x = e.target;
-    
     if (first != '' && second === '') {
-        operator = x.innerHTML;
+        operator = e.target.innerHTML;
         display.innerHTML = operator;
     } else if (first != '' && second != '') {
         first = parseFloat(first);
@@ -76,7 +85,7 @@ function updateOperator(e) {
         let current = operate(operator, first, second);
         display.innerHTML = current.toFixed(2);
         first = current; 
-        operator = x.innerHTML;
+        operator = e.target.innerHTML;
         second = '';
     }
 }
@@ -125,5 +134,28 @@ function decimalPoint() {
     ) {
         second += '.';
         display.innerHTML = second;
+    }
+}
+
+function handleKey(e) {
+    if (operator === '' && second === '') {
+        first += e.key;
+        display.innerHTML = first;
+    } else if (operator === '/' && e.key === '0') {
+        window.alert("Whoa whoa whoa you can't do that!\n\nEnter a number greater than zero:")
+    } else if (first != '' && operator != '') {
+        second += e.key;
+        display.innerHTML = second;
+    } else if (first != '' && second === '') {
+        operator = e.key;
+        display.innerHTML = operator;
+    } else if (first != '' && second != '') {
+        first = parseFloat(first);
+        second = parseFloat(second);
+        let current = operate(operator, first, second);
+        display.innerHTML = current.toFixed(2);
+        first = current; 
+        operator = e.key;
+        second = '';
     }
 }
