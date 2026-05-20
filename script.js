@@ -14,9 +14,13 @@ equals.addEventListener("click", () => result());
 clear.addEventListener("click", () => clearAll());
 back.addEventListener("click", () => backspace());
 decimal.addEventListener("click", () => decimalPoint());
+numbers.forEach(item => {
+    item.addEventListener('click', updateNumbers)
+});
+operators.forEach(item => {
+    item.addEventListener('click', updateOperator)
+});
 
-updateNumbers();
-updateOperator();
 
 function add(a, b) {
     return a + b;
@@ -46,39 +50,35 @@ function operate(operator, first, second) {
     };
 }
 
-function updateNumbers() {
-    numbers.forEach((num) => {
-        num.addEventListener("click", (e) => {
-            if (operator === '' && second === '') {
-                first += e.target.innerHTML;
-                display.innerHTML = first;
-            } else if (operator === '/' && e.target.innerHTML === '0') {
-                window.alert("Whoa whoa whoa you can't do that!\n\nEnter a number greater than zero:")
-            } else if (first != '' && operator != '') {
-                second += e.target.innerHTML;
-                display.innerHTML = second;
-            }
-        });
-    });
+function updateNumbers(e) {
+    let x = e.target;
+        
+    if (operator === '' && second === '') {
+        first += x.innerHTML;
+        display.innerHTML = first;
+    } else if (operator === '/' && x.innerHTML === '0') {
+        window.alert("Whoa whoa whoa you can't do that!\n\nEnter a number greater than zero:")
+    } else if (first != '' && operator != '') {
+        second += x.innerHTML;
+        display.innerHTML = second;
+    }
 }
 
-function updateOperator() {
-    operators.forEach((item) => {
-        item.addEventListener("click", (e) => {
-            if (first != '' && second === '') {
-                operator = e.target.innerHTML;
-                display.innerHTML = operator;
-            } else if (first != '' && second != '') {
-                first = parseFloat(first);
-                second = parseFloat(second);
-                let current = operate(operator, first, second);
-                display.innerHTML = current.toFixed(2);
-                first = current; 
-                operator = e.target.innerHTML;
-                second = '';
-            }
-        });
-    });
+function updateOperator(e) {
+    let x = e.target;
+    
+    if (first != '' && second === '') {
+        operator = x.innerHTML;
+        display.innerHTML = operator;
+    } else if (first != '' && second != '') {
+        first = parseFloat(first);
+        second = parseFloat(second);
+        let current = operate(operator, first, second);
+        display.innerHTML = current.toFixed(2);
+        first = current; 
+        operator = x.innerHTML;
+        second = '';
+    }
 }
 
 function result() {
