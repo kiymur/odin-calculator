@@ -23,14 +23,18 @@ operators.forEach(item => {
 });
 document.addEventListener('keydown', e => {
     if (parseFloat(e.key) >= 0 && parseFloat(e.key) <= 9) {
-        handleKey(e);
-    } else if (e.key == "Backspace") {
+        handleNumKey(e);
+    } else if (e.key == '-' || e.key == '/') {
+        handleOpKey(e);
+    } else if (e.shiftKey == true && e.key == '+' || e.key == '*') {
+        handleOpKey(e);
+    } else if (e.key == 'Backspace') {
         backspace();
-    } else if (e.key == "Delete") {
+    } else if (e.key == 'Delete') {
         clearAll();
-    } else if (e.key == "Enter") {
+    } else if (e.key == 'Enter') {
         result();
-    } else if (e.key == ".") {
+    } else if (e.key == '.') {
         decimalPoint();
     }
 });
@@ -137,7 +141,7 @@ function decimalPoint() {
     }
 }
 
-function handleKey(e) {
+function handleNumKey(e) {
     if (operator === '' && second === '') {
         first += e.key;
         display.innerHTML = first;
@@ -146,7 +150,11 @@ function handleKey(e) {
     } else if (first != '' && operator != '') {
         second += e.key;
         display.innerHTML = second;
-    } else if (first != '' && second === '') {
+    }
+}
+
+function handleOpKey(e) {
+    if (first != '' && second === '') {
         operator = e.key;
         display.innerHTML = operator;
     } else if (first != '' && second != '') {
