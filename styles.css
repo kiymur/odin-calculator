@@ -40,6 +40,9 @@ button {
     align-items: flex-end;
     width: 300px;
     height: 125px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .operators {
